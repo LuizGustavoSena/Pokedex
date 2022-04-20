@@ -1,35 +1,28 @@
-interface HttpGetClient {
-    get(url: string):Promise<void>;
+import { HttpGetClientSpy } from "../../test/mock-http-client";
+import { RemotePokemon } from "./remote-pokemon";
+
+type SutTypes ={
+    sut: RemotePokemon,
+    httpGetClientSpy: HttpGetClientSpy
 }
 
-class RemotePokemon {
-    constructor(
-        private readonly url: string,
-        private readonly httpGetClient: HttpGetClient
-    ){}
+const makeSut = (url: string = 'any_url'): SutTypes =>{
+    const httpGetClientSpy = new HttpGetClientSpy();
+    const sut = new RemotePokemon(url, httpGetClientSpy);
 
-    async get():Promise<void>{
-        await this.httpGetClient.get(this.url);
+    return {
+        sut,
+        httpGetClientSpy
     }
 }
 
 describe('RemotePokemon', () =>{
     test('Should call HttpClient with correct URL', async() => {
-        class HttpGetClientSpy implements HttpGetClient {
-            url?: string;
-
-            async get(url: string): Promise<void> {
-                this.url = url;
-                return Promise.resolve();
-            }
-        }
-
         const url = 'any_url';
-        const httpGetClient = new HttpGetClientSpy();
-
-        const sut = new RemotePokemon(url, httpGetClient);
+        const { sut, httpGetClientSpy } = makeSut(url);
+        
         await sut.get();
 
-        expect(httpGetClient.url).toBe(url)
+        expect(httpGetClientSpy.url).toBe(url)
     })
 })
