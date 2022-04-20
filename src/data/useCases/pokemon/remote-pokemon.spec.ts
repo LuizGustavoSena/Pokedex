@@ -30,6 +30,6 @@ describe('RemotePokemon', () =>{
         const sut = new RemotePokemon(url, httpGetClient);
         await sut.get();
 
-        expect(httpClient.url).toBe(url)
+        expect(httpGetClient.url).toBe(url)
     })
 })

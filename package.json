@@ -6,11 +6,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest --passWithNoTest",
-    "test-watch": "yarn jest -- --watch",
-    "test-staged": "yarn jest -- --findRelatedTest",
-    "test-ci": "yarn jest -- --coverage"
+    "testw": "yarn jest -- --watch",
+    "tests": "yarn jest -- --findRelatedTest",
+    "testc": "yarn jest -- --coverage"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "7.16.7",
     "@types/jest": "27.4.1",
     "@types/node": "16.7.13",
     "@types/react": "18.0.0",
@@ -47,14 +48,10 @@
     ]
   },
   "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "ts",
-      "tsx"
-    ],
     "module.exports": {
-      "transformIgnorePatterns": [
-        "node_modules/(?!capacitor-community).+\\.js$"
+      "moduleFileExtensions": [
+        "ts",
+        "tsx"
       ]
     }
   }
