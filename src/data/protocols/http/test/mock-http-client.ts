@@ -3,7 +3,7 @@ import { HttpResponse, HttpStatusCode } from "../protocols/http/http-response";
 
 export class HttpGetClientSpy implements HttpGetClient {
     url?: string;
-    response: HttpResponse = {
+    response: HttpResponse ={
         statusCode: HttpStatusCode.ok
     }
 
