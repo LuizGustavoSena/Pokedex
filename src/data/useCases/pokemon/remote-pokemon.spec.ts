@@ -1,7 +1,8 @@
 import { RequestError } from "../../../domain/error/requestError";
 import { PokemonResponse } from "../../../domain/models/pokemon-models";
+import { mockPokemons } from "../../../domain/test";
 import { HttpStatusCode } from "../../protocols/http/http-response";
-import { HttpGetClientSpy } from "../../test/mock-http-client";
+import { HttpGetClientSpy } from "../../test";
 import { RemotePokemon } from "./remote-pokemon";
 
 type SutTypes ={
@@ -36,5 +37,14 @@ describe('RemotePokemon', () =>{
         const promise = sut.get();
 
         await expect(promise).rejects.toThrow(new RequestError());
+    })
+
+    test('Should currect result with statusCode response 200', async() => {
+        const { sut, httpGetClientSpy } = makeSut();
+        httpGetClientSpy.response.body = mockPokemons;
+        
+        const responte = await sut.get();
+
+        expect(responte).toEqual(mockPokemons);
     })
 })
