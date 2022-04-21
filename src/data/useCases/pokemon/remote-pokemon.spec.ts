@@ -1,15 +1,16 @@
 import { RequestError } from "../../../domain/error/requestError";
+import { PokemonResponse } from "../../../domain/models/pokemon-models";
 import { HttpStatusCode } from "../../protocols/http/http-response";
 import { HttpGetClientSpy } from "../../test/mock-http-client";
 import { RemotePokemon } from "./remote-pokemon";
 
 type SutTypes ={
     sut: RemotePokemon,
-    httpGetClientSpy: HttpGetClientSpy
+    httpGetClientSpy: HttpGetClientSpy<PokemonResponse>
 }
 
 const makeSut = (url: string = 'any_url'): SutTypes =>{
-    const httpGetClientSpy = new HttpGetClientSpy();
+    const httpGetClientSpy = new HttpGetClientSpy<PokemonResponse>();
     const sut = new RemotePokemon(url, httpGetClientSpy);
 
     return {

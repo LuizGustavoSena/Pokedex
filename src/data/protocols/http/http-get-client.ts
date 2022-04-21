@@ -4,6 +4,6 @@ export type httpGetParams = {
     url: string
 }
 
-export interface HttpGetClient {
-    get(params: httpGetParams):Promise<HttpResponse>;
+export interface HttpGetClient<T> {
+    get(params: httpGetParams):Promise<HttpResponse<T>>;
 }

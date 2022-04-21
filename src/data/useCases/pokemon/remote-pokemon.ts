@@ -1,11 +1,12 @@
 import { RequestError } from "../../../domain/error/requestError";
+import { PokemonResponse } from "../../../domain/models/pokemon-models";
 import { HttpGetClient } from "../../protocols/http/http-get-client";
 import { HttpStatusCode } from "../../protocols/http/http-response";
 
 export class RemotePokemon {
     constructor(
         private readonly url: string,
-        private readonly httpGetClient: HttpGetClient
+        private readonly httpGetClient: HttpGetClient<PokemonResponse>
     ){}
 
     async get():Promise<void>{
