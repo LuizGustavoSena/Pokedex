@@ -3,8 +3,8 @@ import Styles from './pokemon-style.scss';
 
 const Pokemon: React.FC = () =>{
     return(
-        <div className={Styles.navBar}>
-            <text>Pokemons</text>
+        <div className={Styles.navbar}>
+            Hello
         </div>
     )
 }
