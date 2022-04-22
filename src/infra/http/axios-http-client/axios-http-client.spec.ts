@@ -1,22 +1,28 @@
-import { AxiosHttpClient } from "./axios-http-client"
-import axios from "axios";
+import { AxiosHttpClient } from "./axios-http-client";
+import { mockAxios } from '../../test';
 import { HttpStatusCode } from "../../../data/protocols/http";
 import { mockPokemons } from "../../../domain/test";
+import axios from "axios";
 
 jest.mock(`axios`);
-const mockedAxios = axios as jest.Mocked<typeof axios>;
-mockedAxios.get.mockResolvedValue({
-    status: HttpStatusCode.ok,
-    data: mockPokemons
-})
 
-const makeSut = (): AxiosHttpClient =>{
-    return new AxiosHttpClient();
+type SutTypes ={
+    sut: AxiosHttpClient;
+    mockedAxios: jest.Mocked<typeof axios>
+}
+
+const makeSut = (): SutTypes =>{
+    const sut = new AxiosHttpClient();
+    const mockedAxios = mockAxios();
+    return {
+        sut,
+        mockedAxios
+    }
 }
 
 describe('AxiosHttpClient', () =>{
     test('Should call axios with correct URL and verb', async() =>{
-        const sut = makeSut();
+        const { sut, mockedAxios } = makeSut();
         const url = 'any_url';
 
         await sut.get({ url })
@@ -24,15 +30,12 @@ describe('AxiosHttpClient', () =>{
         expect(mockedAxios.get).toHaveBeenCalledWith(url);
     })
 
-    test('Should correct response', async() =>{
-        const sut = makeSut();
+    test('Should correct response', () =>{
+        const { sut, mockedAxios } = makeSut();
         const url = 'any_url';
 
-        const response = await sut.get({ url })
+        const promise = sut.get({ url })
 
-        expect(response).toEqual({
-            statusCode: HttpStatusCode.ok,
-            body: mockPokemons
-        });
+        expect(promise).toEqual(mockedAxios.get.mock.results[0].value);
     })
 })
