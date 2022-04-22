@@ -6,7 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest --passWithNoTest",
-    "testw": "yarn jest -- --watch",
+    "testw": "yarn jest -- --watchAll",
     "tests": "yarn jest -- --findRelatedTest",
     "testc": "yarn jest -- --coverage"
   },
