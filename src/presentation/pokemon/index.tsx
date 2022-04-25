@@ -1,9 +1,9 @@
 import React from 'react';
-import Styles from './pokemon-style.scss';
+import './pokemon-style.scss';
 
 const Pokemon: React.FC = () =>{
     return(
-        <div className={Styles.navbar}>
+        <div className='navbar'>
             Hello
         </div>
     )
