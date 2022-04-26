@@ -1,6 +1,38 @@
 .navbar {
-    background-color: red;
-    height: 45px;
+    .menuCard{
+        background-color: #9400D3;
+        width: 100vw;
+        height: 50px;
+
+        .leftItem{
+            width: 30%;
+            height: 100%;
+            display: inline-block;
+
+            .imgTitle{
+                display: flex;
+                align-items: center;
+
+                img{
+                    height: 50px;
+                    margin-left: 30px;
+                    display: inline-block;
+                }
+    
+                h2{
+                    margin-left: 30px ;
+                    display: inline-block;
+                    color: #1C1C1C
+                }
+            }
+        }
+        .rightItem{
+            width: 70%;
+            height: 100%;
+            display: inline-block;
+
+        }
+    }
 }
 
 .header {
