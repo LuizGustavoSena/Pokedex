@@ -1,42 +1,14 @@
-.navbar {
-    .menuCard{
-        background-color: #9400D3;
-        width: 100vw;
-        height: 50px;
+.PokemonContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
 
-        .leftItem{
-            width: 30%;
-            height: 100%;
-            display: inline-block;
-
-            .imgTitle{
-                display: flex;
-                align-items: center;
-
-                img{
-                    height: 50px;
-                    margin-left: 30px;
-                    display: inline-block;
-                }
-    
-                h2{
-                    margin-left: 30px ;
-                    display: inline-block;
-                    color: #1C1C1C
-                }
-            }
-        }
-        .rightItem{
-            width: 70%;
-            height: 100%;
-            display: inline-block;
-
-        }
+    .PokemonItem {
+        width: 200px;
+        height: 200px;
+        justify-self: center;
+        align-self: center;
+        background-color: red;
     }
 }
 
-.header {
-    background-color: #9400D3;
-    height: 40px;
-    width: 100vw;
-}
