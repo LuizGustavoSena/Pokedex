@@ -1,7 +1,5 @@
 import { AxiosHttpClient } from "./axios-http-client";
 import { mockAxios } from '../../test';
-import { HttpStatusCode } from "../../../data/protocols/http";
-import { mockPokemons } from "../../../domain/test";
 import axios from "axios";
 
 jest.mock(`axios`);

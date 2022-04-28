@@ -3,9 +3,15 @@ export type Pokemon= {
     url: string
 }
 
+export type abilities= {
+    ability:{
+        name: string,
+        url: string
+    }
+}
+
 export type PokemonResponse = {
-    count: number,
-    next: string,
-    previous: null,
-    results: Pokemon[],
+    abilities: abilities [],
+    name: string,
+    sprites: { other: { official_artwork: { front_default: string } }}
 }
