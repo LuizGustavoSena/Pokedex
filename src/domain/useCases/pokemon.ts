@@ -1,5 +1,6 @@
-import { PokemonResponse } from "../models";
+import { InfoPokemons, Pokemons } from "../models";
 
 export interface Pokemon {
-    get(): Promise<PokemonResponse>
+    getPokemons(): Promise<Pokemons>;
+    getInfoPokemon(pokemon: string): Promise<InfoPokemons>;
 }

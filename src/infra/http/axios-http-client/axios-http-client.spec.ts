@@ -1,16 +1,17 @@
 import { AxiosHttpClient } from "./axios-http-client";
 import { mockAxios } from '../../test';
 import axios from "axios";
+import { InfoPokemons } from "../../../domain/models";
 
 jest.mock(`axios`);
 
 type SutTypes ={
-    sut: AxiosHttpClient;
+    sut: AxiosHttpClient<InfoPokemons>;
     mockedAxios: jest.Mocked<typeof axios>
 }
 
 const makeSut = (): SutTypes =>{
-    const sut = new AxiosHttpClient();
+    const sut = new AxiosHttpClient<InfoPokemons>();
     const mockedAxios = mockAxios();
     return {
         sut,
