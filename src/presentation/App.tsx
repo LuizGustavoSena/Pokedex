@@ -1,8 +1,8 @@
-import Pokemon from "./pokemon";
+import HandlerPokemon from "../main/factories/pages/pokemon/handler-pokemon";
 
 function App() {
   return (
-    <Pokemon/>
+    <HandlerPokemon />
   );
 }
 

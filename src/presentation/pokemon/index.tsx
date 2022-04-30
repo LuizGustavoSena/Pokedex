@@ -1,71 +1,50 @@
-import React from 'react';
-import { Pokemon } from '../../domain/models';
+import React, { useEffect, useState } from 'react';
+import { RemotePokemon } from '../../data/useCases/pokemon/remote-pokemon';
+import { InfoPokemons, Pokemon } from '../../domain/models';
 import Menu from '../menu';
 import './pokemon-style.scss';
 
-const pokemons = {
-    count: 1126,
-    next: "https://pokeapi.co/api/v2/pokemon?offset=10&limit=10",
-    previous: null,
-    results: [
-      {
-        name: "bulbasaur",
-        url: "https://pokeapi.co/api/v2/pokemon/1/"
-      },
-      {
-        name: "ivysaur",
-        url: "https://pokeapi.co/api/v2/pokemon/2/"
-      },
-      {
-        name: "venusaur",
-        url: "https://pokeapi.co/api/v2/pokemon/3/"
-      },
-      {
-        name: "charmander",
-        url: "https://pokeapi.co/api/v2/pokemon/4/"
-      },
-      {
-        name: "charmeleon",
-        url: "https://pokeapi.co/api/v2/pokemon/5/"
-      },
-      {
-        name: "charizard",
-        url: "https://pokeapi.co/api/v2/pokemon/6/"
-      },
-      {
-        name: "squirtle",
-        url: "https://pokeapi.co/api/v2/pokemon/7/"
-      },
-      {
-        name: "wartortle",
-        url: "https://pokeapi.co/api/v2/pokemon/8/"
-      },
-      {
-        name: "blastoise",
-        url: "https://pokeapi.co/api/v2/pokemon/9/"
-      },
-      {
-        name: "caterpie",
-        url: "https://pokeapi.co/api/v2/pokemon/10/"
-      }
-    ]
+type Props = {
+  pokemon: RemotePokemon
 }
 
-const Pokemons: React.FC = () =>{
-    return(
-        <>
-            <Menu />
-            <div className='PokemonContainer'>
-              { pokemons && pokemons.results.map((pokemon: Pokemon) => {
-                  return(
-                      <div className='PokemonItem'>
-                          Nome: {pokemon.name}<br/> URL: {pokemon.url}
-                      </div>
-                  )
-              })}
-            </div>
-        </>
-    )
+const Index: React.FC<Props> = ({ pokemon }: Props) =>{
+  const [ pokemons, setPokemons ] = useState<InfoPokemons[] | null>(null);
+
+  useEffect(()=>{
+     async function searchPokemons(){
+      let pokemons = await pokemon.getPokemons();
+      let list = [];
+      
+      const infoPokemons = pokemons.results.map(async(item: Pokemon) => {
+          list.push(await pokemon.getInfoPokemon(item.name));
+          return item;
+      })
+        
+      await Promise.all(infoPokemons);
+        
+      console.log({list});
+      setPokemons(list);
+    }
+
+    searchPokemons();
+  }, []);
+
+  return(
+      <>
+          <Menu />
+          <div className='PokemonContainer'>
+            { pokemons && pokemons.map((item: InfoPokemons, index: number) => {
+                return(
+                    <div className='PokemonItem' key={index}>
+                      <img src={item.sprites.front_default} />
+                      <h3>Nome: {item.name}</h3>
+                    </div>
+                )
+            })}
+          </div>
+      </>
+  )
 }
 
-export default Pokemons;
+export default Index;
