@@ -1,6 +1,11 @@
+import { useState } from 'react'
 import './menu-style.scss'
 
-const Menu: React.FC = () => {
+type Props = {
+    toggleFilterPokemon(words: string):void
+}
+
+const Menu: React.FC<Props> = ({ toggleFilterPokemon }: Props) => {
     return(
         <div className='menuCard'>
         <div className='leftItem'>
