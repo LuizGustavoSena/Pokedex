@@ -1,6 +1,6 @@
 import { InfoPokemons, Pokemons } from "../models";
 
 export interface Pokemon {
-    getPokemons(): Promise<Pokemons>;
+    getPokemons(count: number): Promise<Pokemons>;
     getInfoPokemon(pokemon: string): Promise<InfoPokemons>;
 }

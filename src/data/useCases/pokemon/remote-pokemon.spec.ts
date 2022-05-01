@@ -28,7 +28,7 @@ describe('RemotePokemon', () =>{
         const url = 'any_url';
         const { sut, httpGetClientPokemonsSpy, httpGetClientInfoPokemonSpy } = makeSut(url);
         
-        await sut.getPokemons();
+        await sut.getPokemons(1);
         await sut.getInfoPokemon('any_pokemon');
 
         expect(httpGetClientPokemonsSpy.url).toBe(url);
@@ -40,7 +40,7 @@ describe('RemotePokemon', () =>{
         httpGetClientPokemonsSpy.response.statusCode = HttpStatusCode.serverError;
         httpGetClientInfoPokemonSpy.response.statusCode = HttpStatusCode.serverError;
         
-        const promisePokemons = sut.getPokemons();
+        const promisePokemons = sut.getPokemons(1);
         const promiseInfoPokemon = sut.getInfoPokemon('any_pokemon');
 
         await expect(promisePokemons).rejects.toThrow(new RequestError());
@@ -51,7 +51,7 @@ describe('RemotePokemon', () =>{
 
         httpGetClientPokemonsSpy.response.body = mockPokemons;
         
-        const responte = await sut.getPokemons();
+        const responte = await sut.getPokemons(1);
 
         expect(responte).toEqual(mockPokemons);
     })

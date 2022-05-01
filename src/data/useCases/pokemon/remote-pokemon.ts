@@ -10,8 +10,8 @@ export class RemotePokemon implements Pokemon {
         private readonly httpGetClientInfoPokemons: HttpGetClient<InfoPokemons>
     ){}
 
-    async getPokemons(): Promise<Pokemons>{
-        const response = await this.httpGetClientPokemons.get({ url: `${this.url}?60` });
+    async getPokemons(count: number): Promise<Pokemons>{
+        const response = await this.httpGetClientPokemons.get({ url: `${this.url}?limit=${count}` });
         switch(response.statusCode){
             case HttpStatusCode.serverError: 
                 throw new RequestError();
