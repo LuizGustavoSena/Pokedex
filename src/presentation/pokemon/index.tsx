@@ -11,7 +11,7 @@ type Props = {
 
 const Index: React.FC<Props> = ({ pokemon }: Props) =>{
   const [ pokemons, setPokemons ] = useState<InfoPokemons[] | null>(null);
-  const [ filter, setFilter ] = useState<string>('');
+  const [ filter, setFilter ] = useState<InfoPokemons[] | null>(null);
 
   useEffect(()=>{
      async function searchPokemons(){
@@ -32,7 +32,14 @@ const Index: React.FC<Props> = ({ pokemon }: Props) =>{
   }, []);
 
   const toggleFilterPokemon = (words: string) =>{
-    setFilter(words);
+    if(words === ''){
+      setFilter(null);
+      return;
+    }
+
+    let lenghtFilter = words.length;
+
+    setFilter(pokemons.filter((item: InfoPokemons)=> item.name.slice(0, lenghtFilter) === words));
   }
 
   return(
@@ -41,7 +48,7 @@ const Index: React.FC<Props> = ({ pokemon }: Props) =>{
             toggleFilterPokemon={toggleFilterPokemon}
           />
           <Pokemons 
-            pokemons={pokemons}
+            pokemons={filter || pokemons}
           />
       </>
   )

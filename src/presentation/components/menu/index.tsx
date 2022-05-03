@@ -15,7 +15,7 @@ const Menu: React.FC<Props> = ({ toggleFilterPokemon }: Props) => {
             </div>
         </div>
         <div className='rightItem'>
-            <input type='text' placeholder='Buscar Pokemon'/>
+            <input type='text' placeholder='Buscar Pokemon' onChange={e => toggleFilterPokemon(e.target.value)}/>
         </div>
     </div>
     )
