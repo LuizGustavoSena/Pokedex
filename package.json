@@ -8,7 +8,8 @@
     "test": "jest --passWithNoTest",
     "testw": "yarn jest -- --watchAll",
     "tests": "yarn jest -- --findRelatedTest",
-    "testc": "yarn jest -- --coverage"
+    "testc": "yarn jest -- --coverage",
+    "clean": "rm -rf .rncache && rm -rf node_modules && yarn cache clean && yarn install"
   },
   "devDependencies": {
     "@babel/preset-typescript": "7.16.7",
@@ -16,7 +17,7 @@
     "@types/node": "16.7.13",
     "@types/react": "18.0.0",
     "@types/react-dom": "18.0.0",
-    "jest": "28.0.3",
+    "jest": "28.0.2",
     "ts-jest": "27.1.4"
   },
   "dependencies": {
