@@ -24,24 +24,43 @@ const makeSut = (url: string = 'any_url'): SutTypes =>{
 }
 
 describe('RemotePokemon', () =>{
-    test('Should call HttpClient with correct URL', async() => {
+    test('Should call httpGetClientPokemonsSpy with correct URL', async() => {
         const url = 'any_url';
+        const countPokemons = 1;
         const { sut, httpGetClientPokemonsSpy, httpGetClientInfoPokemonSpy } = makeSut(url);
         
-        await sut.getPokemons(1);
+        await sut.getPokemons(countPokemons);
         await sut.getInfoPokemon('any_pokemon');
 
-        expect(httpGetClientPokemonsSpy.url).toBe(url);
+        expect(httpGetClientPokemonsSpy.url).toBe(`${url}?limit=${countPokemons}`);
     })
 
-    test('Should throw requestError with statusCode response that different 200', async() => {
-        const { sut, httpGetClientPokemonsSpy, httpGetClientInfoPokemonSpy } = makeSut();
+    test('Should call httpGetClientInfoPokemonSpy with correct URL', async() => {
+        const url = 'any_url';
+        const namePokemon = 'any_pokemon'
+        const { sut, httpGetClientInfoPokemonSpy } = makeSut(url);
+        
+        await sut.getInfoPokemon(namePokemon);
+
+        expect(httpGetClientInfoPokemonSpy.url).toBe(`${url}/${namePokemon}`);
+    })
+
+    test('Should throw requestError get Pokemons with statusCode response that different 200', async() => {
+        const { sut, httpGetClientPokemonsSpy } = makeSut();
 
         httpGetClientPokemonsSpy.response.statusCode = HttpStatusCode.serverError;
-        httpGetClientInfoPokemonSpy.response.statusCode = HttpStatusCode.serverError;
         
         const promisePokemons = sut.getPokemons(1);
-        const promiseInfoPokemon = sut.getInfoPokemon('any_pokemon');
+
+        await expect(promisePokemons).rejects.toThrow(new RequestError());
+    })
+
+    test('Should throw requestError get InfoPokemons with statusCode response that different 200', async() => {
+        const { sut, httpGetClientInfoPokemonSpy } = makeSut();
+
+        httpGetClientInfoPokemonSpy.response.statusCode = HttpStatusCode.serverError;
+        
+        const promisePokemons = sut.getInfoPokemon('any_pokemon');
 
         await expect(promisePokemons).rejects.toThrow(new RequestError());
     })
