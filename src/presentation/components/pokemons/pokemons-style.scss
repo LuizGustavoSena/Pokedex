@@ -2,16 +2,21 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 30px;
+    margin-top: 30px;
 
     .PokemonItem {
         width: 200px;
         height: 200px;
         justify-self: center;
         align-self: center;
-        // background-color: red;
+        border-width: medium;
+        border-style: solid;
+        border-color: #9400D3;
+        border-radius: 30px;
 
         img {
             height: 170px;
+            margin-left: 15px;
         }
 
         h3 {
