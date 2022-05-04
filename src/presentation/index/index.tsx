@@ -35,18 +35,11 @@ const Index: React.FC<Props> = ({ pokemon }: Props) =>{
     }
 
     searchPokemons();
+  // eslint-disable-next-line
   }, []);
 
-  const toggleFilterPokemon = (words: string) =>{
-    if(words === ''){
-      setFilter(null);
-      return;
-    }
-
-    let lenghtFilter = words.length;
-
-    setFilter(pokemons.filter((item: InfoPokemons)=> item.name.slice(0, lenghtFilter) === words));
-  }
+  const toggleFilterPokemon = (words: string) =>
+    setFilter(pokemon.filter(words, pokemons));
 
   return(
       <>
