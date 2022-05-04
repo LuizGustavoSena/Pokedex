@@ -84,4 +84,28 @@ describe('RemotePokemon', () =>{
 
         expect(responte).toEqual(mockInfoPokemons);
     })
+
+    test('Should method filter returns itens with name pokemon exist', async() => {
+        const { sut } = makeSut();
+        
+        const filterResponse = sut.filter(mockInfoPokemons.name, [mockInfoPokemons]);
+
+        expect(filterResponse).toEqual([mockInfoPokemons]);
+    })
+
+    test('Should method filter returns empty array with name pokemon don`t exist', async() => {
+        const { sut } = makeSut();
+        
+        const filterResponse = sut.filter('other_name', [mockInfoPokemons]);
+
+        expect(filterResponse).toEqual([]);
+    })
+
+    test('Should method filter returns null with don`t have word', async() => {
+        const { sut } = makeSut();
+        
+        const filterResponse = sut.filter('', [mockInfoPokemons]);
+
+        expect(filterResponse).toBeNull();
+    })
 })

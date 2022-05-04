@@ -30,4 +30,9 @@ export class RemotePokemon implements Pokemon {
                 return Promise.resolve(response.body);
         }
     }
+
+    filter(words: string, pokemons: InfoPokemons[]): InfoPokemons[] | null {
+        if(words === '') return null
+        return pokemons.filter((item: InfoPokemons)=> item.name.slice(0, words.length) === words);
+    }
 }      
