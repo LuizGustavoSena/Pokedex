@@ -1,8 +1,7 @@
 import { RequestError } from "../../../domain/error";
 import { InfoPokemons, Pokemons } from "../../../domain/models/pokemon-models";
 import { Pokemon } from "../../../domain/useCases/pokemon";
-import { HttpGetClient } from "../../protocols/http/http-get-client";
-import { HttpStatusCode } from "../../protocols/http/http-response";
+import { HttpGetClient, HttpStatusCode } from "../../protocols/http";
 export class RemotePokemon implements Pokemon {
     constructor(
         private readonly url: string,

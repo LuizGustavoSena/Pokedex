@@ -1,10 +1,10 @@
-import { httpGetParams, HttpResponse } from "../../../data/protocols/http";
+import { HttpGetClient, httpGetParams, HttpResponse } from "../../../data/protocols/http";
 import axios from "axios";
-export class AxiosHttpClient<T> implements HttpResponse<T>{
+export class AxiosHttpClient implements HttpGetClient<any>{
     statusCode: number;
-    body?: T;
+    body?: any;
     
-    async get(params: httpGetParams): Promise<HttpResponse<T>>{
+    async get(params: httpGetParams): Promise<HttpResponse<any>>{
         const response = await axios.get(params.url);
 
         return {

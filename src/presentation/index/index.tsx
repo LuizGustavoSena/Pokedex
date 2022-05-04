@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { RemotePokemon } from '../../data/useCases/pokemon/remote-pokemon';
-import { InfoPokemons, Pokemon } from '../../domain/models';
+import { InfoPokemons, PokemonItem, } from '../../domain/models';
+import { Pokemon } from '../../domain/useCases/pokemon';
 import Loading from '../components/loading/loading';
 import Menu from '../components/menu';
 import Pokemons from '../components/pokemons/pokemons';
 import './index-style.scss';
 
 type Props = {
-  pokemon: RemotePokemon
+  pokemon: Pokemon
 }
 
 const Index: React.FC<Props> = ({ pokemon }: Props) =>{
@@ -22,7 +22,7 @@ const Index: React.FC<Props> = ({ pokemon }: Props) =>{
       let pokemons = await pokemon.getPokemons(1000);
       let list = [];
       
-      const infoPokemons = pokemons.results.map(async(item: Pokemon) => {
+      const infoPokemons = pokemons.results.map(async(item: PokemonItem) => {
           list.push(await pokemon.getInfoPokemon(item.name));
           return item;
       })
