@@ -5,7 +5,13 @@ export class AxiosHttpClient implements HttpGetClient<any>{
     body?: any;
     
     async get(params: httpGetParams): Promise<HttpResponse<any>>{
-        const response = await axios.get(params.url);
+        let response;
+        
+        try{
+            response = await axios.get(params.url);
+        }catch(error){
+            response = error.response;
+        }
 
         return {
             statusCode: response.status,
