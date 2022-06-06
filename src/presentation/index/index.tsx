@@ -10,49 +10,49 @@ type Props = {
   pokemon: Pokemon
 }
 
-const Index: React.FC<Props> = ({ pokemon }: Props) =>{
-  const [ pokemons, setPokemons ] = useState<InfoPokemons[] | null>(null);
-  const [ filter, setFilter ] = useState<InfoPokemons[] | null>(null);
-  const [ loading, setLoading ] = useState<boolean>(false);
+const Index: React.FC<Props> = ({ pokemon }: Props) => {
+  const [pokemons, setPokemons] = useState<InfoPokemons[] | null>(null);
+  const [filter, setFilter] = useState<InfoPokemons[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(()=>{
-     async function searchPokemons(){
+  useEffect(() => {
+    async function searchPokemons() {
       setLoading(true);
 
       let pokemons = await pokemon.getPokemons(1000);
       let list = [];
-      
-      const infoPokemons = pokemons.results.map(async(item: PokemonItem) => {
-          list.push(await pokemon.getInfoPokemon(item.name));
-          return item;
+
+      const infoPokemons = pokemons.results.map(async (item: PokemonItem) => {
+        list.push(await pokemon.getInfoPokemon(item.name));
+        return item;
       })
-        
+
       await Promise.all(infoPokemons);
-        
+
       setPokemons(list);
 
       setLoading(false);
     }
 
     searchPokemons();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   const toggleFilterPokemon = (words: string) =>
     setFilter(pokemon.filter(words, pokemons));
 
-  return(
-      <>
-          <Menu 
-            toggleFilterPokemon={toggleFilterPokemon}
-          />
-          <Pokemons 
-            pokemons={filter || pokemons}
-          />
-          <Loading 
-            loading={loading}
-          />
-      </>
+  return (
+    <>
+      <Menu
+        toggleFilterPokemon={toggleFilterPokemon}
+      />
+      <Pokemons
+        pokemons={filter || pokemons}
+      />
+      {/* <Loading
+        loading={loading}
+      /> */}
+    </>
   )
 }
 
