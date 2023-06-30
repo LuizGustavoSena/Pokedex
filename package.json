@@ -1,61 +1,28 @@
 {
-  "name": "pojedex",
-  "version": "0.1.0",
+  "name": "pokedex",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "jest --passWithNoTest",
-    "testw": "yarn jest -- --watchAll",
-    "tests": "yarn jest -- --findRelatedTest",
-    "testc": "yarn jest -- --coverage",
-    "clean": "rm -rf .rncache && rm -rf node_modules && yarn cache clean && yarn install"
-  },
-  "devDependencies": {
-    "@babel/preset-typescript": "7.16.7",
-    "@types/jest": "27.4.1",
-    "@types/node": "16.7.13",
-    "@types/react": "18.0.0",
-    "@types/react-dom": "18.0.0",
-    "jest": "28.0.2",
-    "ts-jest": "27.1.4"
+    "start": "vite --open",
+    "build": "tsc && vite build",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "5.14.1",
-    "@testing-library/react": "13.0.0",
-    "@testing-library/user-event": "13.2.1",
-    "axios": "0.26.1",
-    "node-sass": "7.0.1",
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
-    "react-scripts": "5.0.1",
-    "typescript": "4.4.2",
-    "web-vitals": "2.1.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "jest": {
-    "module.exports": {
-      "moduleFileExtensions": [
-        "ts",
-        "tsx"
-      ]
-    }
+  "devDependencies": {
+    "@types/react": "18.0.37",
+    "@types/react-dom": "18.0.11",
+    "@typescript-eslint/eslint-plugin": "5.59.0",
+    "@typescript-eslint/parser": "5.59.0",
+    "@vitejs/plugin-react": "4.0.0",
+    "eslint": "8.38.0",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-react-refresh": "0.3.4",
+    "typescript": "5.0.2",
+    "vite": "4.3.9"
   }
 }
