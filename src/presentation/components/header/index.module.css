@@ -14,9 +14,17 @@
 .logo {
     width: 30%;
     height: 100%;
-    background-color: blue;
-    justify-content: center;
+    display: flex;
+    justify-content: start;
     align-items: center;
+    font-size: 40px;
+    color: #EAE7AF;
+
+    .image {
+        height: 70%;
+        margin-right: 15px;
+        margin-left: 20px;
+    }
 }
 
 .search {
