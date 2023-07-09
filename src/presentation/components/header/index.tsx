@@ -12,7 +12,7 @@ const Header: React.FC = () => {
                     <p>Pokedex</p>
                 </div>
                 <div className={style.search}>
-                    Barra pesquisa
+                    <input className={style.input} type="text" placeholder="Find pokemon" />
                 </div>
             </div>
         </div>
