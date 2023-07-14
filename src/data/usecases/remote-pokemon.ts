@@ -1,20 +1,19 @@
 import { UnexpectedError } from '@/domain/error/unexpected-error';
+import { ResponsePokemonAll } from '@/domain/models/pokemon-model';
 import { GetPokemons, Pokemons } from '../../domain/usecases';
 import { HttpClient, HttpStatusCode } from '../protocols/http';
 
 export class RemotePokemon implements GetPokemons {
     constructor(
         private readonly url: string,
-        private readonly httpClient: HttpClient<RemotePokemon.Model>
+        private readonly httpClientAll: HttpClient<RemotePokemon.ModelAll>,
+        private readonly httpClientOnly: HttpClient<RemotePokemon.ModelOnly>
     ) { }
-    getOnly(params: Pokemons.ParamsOnly): Promise<Pokemons.ModelOnly> {
-        throw new Error('Method not implemented.');
-    }
 
-    async getAll(params: Pokemons.ParamsAll): Promise<Pokemons.ModelAll> {
+    async getAll(params: Pokemons.ParamsAll): Promise<Pokemons.Model[]> {
         const { limit } = params;
 
-        let response = await this.httpClient.request({
+        let response = await this.httpClientAll.request({
             url: `${this.url}?limit=${limit}`,
             method: 'get'
         });
@@ -22,19 +21,37 @@ export class RemotePokemon implements GetPokemons {
         if (response.statusCode !== HttpStatusCode.Ok)
             throw new UnexpectedError();
 
-        let pokemons: Pokemons.ModelOnly[] = [];
+        let pokemons: Pokemons.Model[] = [];
 
-        response.body?.results.forEach(el => {
-            let responsePokemon = this.httpClient.request({
-                url: el.url,
-                method: 'get'
-            })
-        })
+        response.body?.results.map(async (el) => {
+            const { url } = el;
 
+            let pokemon = await this.getOnly({ url });
+
+            pokemons.push(pokemon);
+
+            return pokemon;
+        });
+
+        return pokemons;
     }
 
+    async getOnly(params: Pokemons.ParamsOnly): Promise<Pokemons.Model> {
+        const { url } = params;
+
+        let response = await this.httpClientOnly.request({
+            url,
+            method: 'get'
+        });
+
+        if (response.statusCode !== HttpStatusCode.Ok)
+            throw new UnexpectedError();
+
+        return response.body as Pokemons.Model;
+    }
 }
 
 export namespace RemotePokemon {
-    export type Model = Pokemons.ModelAll;
+    export type ModelAll = ResponsePokemonAll;
+    export type ModelOnly = Pokemons.Model;
 }
