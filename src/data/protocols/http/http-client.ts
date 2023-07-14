@@ -20,7 +20,7 @@ export interface HttpClient<T = any> {
     request(params: HttpRequest): Promise<HttpResponse<T>>;
 }
 
-type HttpResponse<T> = {
+export type HttpResponse<T> = {
     statusCode: HttpStatusCode;
     body?: T;
 }
