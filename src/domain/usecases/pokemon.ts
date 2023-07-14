@@ -1,8 +1,8 @@
-import { ResponsePokemonAll, ResponsePokemonOnly } from "../models/pokemon-model";
+import { ResponsePokemonOnly } from "../models/pokemon-model";
 
 export interface GetPokemons {
-    getAll(params: Pokemons.ParamsAll): Promise<Pokemons.ModelOnly[]>;
-    getOnly(params: Pokemons.ParamsOnly): Promise<Pokemons.ModelOnly>;
+    getAll(params: Pokemons.ParamsAll): Promise<Pokemons.Model[]>;
+    getOnly(params: Pokemons.ParamsOnly): Promise<Pokemons.Model>;
 }
 
 export namespace Pokemons {
@@ -12,6 +12,5 @@ export namespace Pokemons {
     export type ParamsOnly = {
         url: string
     };
-    export type ModelAll = ResponsePokemonAll;
-    export type ModelOnly = ResponsePokemonOnly;
+    export type Model = ResponsePokemonOnly;
 }
