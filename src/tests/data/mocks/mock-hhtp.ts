@@ -1,12 +1,27 @@
 import { HttpClient, HttpRequest, HttpResponse, HttpStatusCode } from "@/data/protocols/http";
+import { ResponsePokemonAll } from "@/domain/models/pokemon-model";
 import faker from "faker";
 
-const mockRequest = (): HttpRequest => {
+export const mockRequest = (): HttpRequest => {
     return {
         method: faker.random.arrayElement(['get', 'post', 'put', 'delete', 'patch']),
         url: faker.internet.url(),
         body: faker.random.objectElement(),
         headers: faker.random.objectElement(),
+    }
+}
+
+export const mockResponsePokemonsAll = (): HttpResponse<ResponsePokemonAll> => {
+    return {
+        statusCode: HttpStatusCode.Ok,
+        body: {
+            count: faker.random.number(),
+            next: faker.random.words(),
+            results: [{
+                name: faker.internet.userName(),
+                url: faker.internet.url()
+            }]
+        }
     }
 }
 
