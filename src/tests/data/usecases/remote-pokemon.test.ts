@@ -80,4 +80,14 @@ describe('data/usecases/remote-pokemon', () => {
 
         await expect(promise).rejects.toThrow(new UnexpectedError());
     });
+
+    it('Should throw UnexpectedError in getOnly method if httpClient returns differents statusCode 200', async () => {
+        const { sut, httpClientSpyOnly } = makeSut();
+
+        httpClientSpyOnly.response = { statusCode: faker.random.arrayElement(arrayStatusCodeErrors) };
+
+        let promiseTwo = sut.getOnly({ url: faker.internet.url() });
+
+        await expect(promiseTwo).rejects.toThrow(new UnexpectedError());
+    });
 })
