@@ -18,20 +18,18 @@ export class RemotePokemon implements GetPokemons {
             method: 'get'
         });
 
-        if (response.statusCode !== HttpStatusCode.Ok)
+        if (response.statusCode !== HttpStatusCode.Ok || !response.body?.results)
             throw new UnexpectedError();
 
         let pokemons: Pokemons.Model[] = [];
 
-        response.body?.results.map(async (el) => {
-            const { url } = el;
+        for (let i = 0; i < response.body.results.length; i++) {
+            const { url } = response.body.results[i];
 
             let pokemon = await this.getOnly({ url });
 
             pokemons.push(pokemon);
-
-            return pokemon;
-        });
+        }
 
         return pokemons;
     }
@@ -47,7 +45,7 @@ export class RemotePokemon implements GetPokemons {
         if (response.statusCode !== HttpStatusCode.Ok)
             throw new UnexpectedError();
 
-        return response.body as Pokemons.Model;
+        return response?.body as Pokemons.Model;
     }
 }
 

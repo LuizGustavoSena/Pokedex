@@ -1,5 +1,5 @@
 import { HttpClient, HttpRequest, HttpResponse, HttpStatusCode } from "@/data/protocols/http";
-import { ResponsePokemonAll } from "@/domain/models/pokemon-model";
+import { ResponsePokemonAll, ResponsePokemonOnly } from "@/domain/models/pokemon-model";
 import faker from "faker";
 
 export const mockRequest = (): HttpRequest => {
@@ -21,6 +21,32 @@ export const mockResponsePokemonsAll = (): HttpResponse<ResponsePokemonAll> => {
                 name: faker.internet.userName(),
                 url: faker.internet.url()
             }]
+        }
+    }
+}
+
+export const mockResponsePokemonsOnly = (): HttpResponse<ResponsePokemonOnly> => {
+    return {
+        statusCode: 200,
+        body: {
+            abilities: [{
+                ability: {
+                    name: faker.name.firstName(),
+                    url: faker.internet.url()
+                },
+                is_hidden: faker.random.boolean(),
+                slot: faker.random.number()
+            }],
+            height: faker.random.number(),
+            id: faker.random.number(),
+            is_default: faker.random.boolean(),
+            location_area_encounters: faker.random.words(),
+            name: faker.name.firstName(),
+            sprites: {
+                other: {
+                    front_default: faker.internet.url()
+                }
+            }
         }
     }
 }

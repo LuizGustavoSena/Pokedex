@@ -3,7 +3,7 @@ import { UnexpectedError } from "@/domain/error/unexpected-error";
 import faker from "faker";
 import { describe, expect, it } from "vitest";
 import { RequestPokemons } from "../../domain/mocks";
-import { HttpClientSpy, mockResponsePokemonsAll } from "../mocks/mock-hhtp";
+import { HttpClientSpy, mockResponsePokemonsAll, mockResponsePokemonsOnly } from "../mocks/mock-hhtp";
 
 type Props = {
     sut: RemotePokemon;
@@ -89,5 +89,16 @@ describe('data/usecases/remote-pokemon', () => {
         let promiseTwo = sut.getOnly({ url: faker.internet.url() });
 
         await expect(promiseTwo).rejects.toThrow(new UnexpectedError());
+    });
+
+    it('Should return an Pokemons.Model[] if httpClient returns statusCode 200', async () => {
+        const { sut, httpClientSpyOnly, httpClientSpyAll } = makeSut();
+
+        httpClientSpyAll.response = mockResponsePokemonsAll();
+        httpClientSpyOnly.response = mockResponsePokemonsOnly();
+
+        let response = await sut.getAll(RequestPokemons());
+
+        expect(response).toEqual([httpClientSpyOnly.response.body]);
     });
 })
