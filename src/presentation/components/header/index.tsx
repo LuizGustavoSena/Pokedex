@@ -5,7 +5,7 @@ import style from './index.module.css';
 const Header: React.FC = () => {
 
     return (
-        <div className={style.container}>
+        <div className={style.boxHeader}>
             <div className={style.box}>
                 <div className={style.logo}>
                     <img className={style.image} src={PokebolSvg} alt="Pokeboll" />

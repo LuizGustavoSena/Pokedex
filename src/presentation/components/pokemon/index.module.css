@@ -1,0 +1,20 @@
+.boxPokemon {
+    width: 100%;
+    padding: 20px;
+    /* Safari/Chrome, other WebKit */
+    -webkit-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    -moz-box-sizing: border-box;
+    /* Opera/IE 8+ */
+    box-sizing: border-box;
+
+    .item {
+        width: 20%;
+        height: 300px;
+        display: flex;
+        background-color: #241663;
+        border-radius: 15px;
+        justify-content: center;
+        align-items: center;
+    }
+}
