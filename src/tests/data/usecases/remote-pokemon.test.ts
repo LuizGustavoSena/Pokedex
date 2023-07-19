@@ -1,4 +1,5 @@
 import { RemotePokemon } from "@/data/usecases/remote-pokemon";
+import { UnexpectedError } from "@/domain/error/unexpected-error";
 import faker from "faker";
 import { describe, expect, it } from "vitest";
 import { RequestPokemons } from "../../domain/mocks";
@@ -39,5 +40,16 @@ describe('data/usecases/remote-pokemon', () => {
         expect(httpClientSpyAll.method).toBe('get');
         expect(httpClientSpyOnly.url).toBe(httpClientSpyAll.response.body.results[index].url);
         expect(httpClientSpyOnly.method).toBe('get');
+    });
+
+    it('Should throw UnexpectedError in getAll method if httpClient returns differents statusCode 200', async () => {
+        const { sut, httpClientSpyAll } = makeSut();
+
+        let requestObject = RequestPokemons();
+        httpClientSpyAll.response = { statusCode: faker.random.arrayElement(arrayStatusCodeErrors) };
+
+        let promise = sut.getAll(requestObject);
+
+        await expect(promise).rejects.toThrow(new UnexpectedError());
     });
 })
