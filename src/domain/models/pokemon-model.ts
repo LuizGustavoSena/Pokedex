@@ -32,6 +32,8 @@ type NameUrlParams = {
 
 type SpritesParams = {
     other: {
-        front_default: string;
+        dream_world: {
+            front_default: string;
+        }
     };
 }

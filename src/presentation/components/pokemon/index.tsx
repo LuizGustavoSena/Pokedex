@@ -1,11 +1,22 @@
+import { ResponsePokemonOnly } from "@/domain/models/pokemon-model";
 import { memo } from "react";
 import style from './index.module.css';
 
-const Pokemon: React.FC = () => {
+type Props = {
+    item: ResponsePokemonOnly;
+}
+const Pokemon: React.FC<Props> = ({ item }: Props) => {
     return (
         <div className={style.boxPokemon}>
             <div className={style.item}>
-                hello Pokemon
+                <div className={style.square}>
+                    <div className={style.circle}>
+                        <img className={style.img} src={item.sprites.other.dream_world.front_default} />
+                    </div>
+                    <label className={style.labelName}>
+                        {item.name}
+                    </label>
+                </div>
             </div>
         </div>
     )
