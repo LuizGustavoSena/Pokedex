@@ -11,9 +11,9 @@ type Props = {
 }
 
 const makeSut = (url: string = faker.internet.url()): Props => {
-    let httpClientSpyOnly = new HttpClientSpy();
     let httpClientSpyAll = new HttpClientSpy();
-    let sut = new RemotePokemon(url, httpClientSpyOnly, httpClientSpyAll);
+    let httpClientSpyOnly = new HttpClientSpy();
+    let sut = new RemotePokemon(url, httpClientSpyAll, httpClientSpyOnly);
 
     return {
         sut,
@@ -22,17 +22,22 @@ const makeSut = (url: string = faker.internet.url()): Props => {
     }
 }
 
+const arrayStatusCodeErrors = [400, 401, 403, 404, 409, 500];
+
 describe('data/usecases/remote-pokemon', () => {
-    it('Should correct urls', async () => {
+    it('Should call httpClient with correct values', async () => {
         let url = faker.internet.url();
         const { sut, httpClientSpyOnly, httpClientSpyAll } = makeSut(url);
 
         let requestObject = RequestPokemons();
         httpClientSpyAll.response = mockResponsePokemonsAll();
+        let index = httpClientSpyAll.response.body.results.length - 1;
 
         await sut.getAll(requestObject);
 
         expect(httpClientSpyAll.url).toBe(`${url}?limit=${requestObject.limit}`);
-        expect(httpClientSpyOnly.url).toBe(httpClientSpyAll.response.body.results[0].url);
-    })
+        expect(httpClientSpyAll.method).toBe('get');
+        expect(httpClientSpyOnly.url).toBe(httpClientSpyAll.response.body.results[index].url);
+        expect(httpClientSpyOnly.method).toBe('get');
+    });
 })
