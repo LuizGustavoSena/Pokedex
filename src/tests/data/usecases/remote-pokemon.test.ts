@@ -52,4 +52,18 @@ describe('data/usecases/remote-pokemon', () => {
 
         await expect(promise).rejects.toThrow(new UnexpectedError());
     });
+
+    it('Should throw UnexpectedError in getAll method if httpClient returns statusCode 200 and undefined results', async () => {
+        const { sut, httpClientSpyAll } = makeSut();
+
+        let requestObject = RequestPokemons();
+        httpClientSpyAll.response = {
+            statusCode: 200,
+            body: { results: undefined }
+        };
+
+        let promise = sut.getAll(requestObject);
+
+        await expect(promise).rejects.toThrow(new UnexpectedError());
+    });
 })
