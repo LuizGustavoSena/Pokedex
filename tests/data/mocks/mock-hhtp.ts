@@ -44,7 +44,9 @@ export const mockResponsePokemonsOnly = (): HttpResponse<ResponsePokemonOnly> =>
             name: faker.name.firstName(),
             sprites: {
                 other: {
-                    front_default: faker.internet.url()
+                    dream_world: {
+                        front_default: faker.internet.url()
+                    }
                 }
             }
         }
