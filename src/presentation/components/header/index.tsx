@@ -1,5 +1,5 @@
 import { memo } from "react";
-import PokebolSvg from '../../assets/images/pokeball.svg';
+import Pokemon from '../../assets/images/pokemon.svg';
 import style from './index.module.css';
 
 const Header: React.FC = () => {
@@ -8,8 +8,7 @@ const Header: React.FC = () => {
         <div className={style.boxHeader}>
             <div className={style.box}>
                 <div className={style.logo}>
-                    <img className={style.image} src={PokebolSvg} alt="Pokeboll" />
-                    <p>Pokedex</p>
+                    <img className={style.image} src={Pokemon} alt="Pokeboll" />
                 </div>
                 <div className={style.search}>
                     <input className={style.input} type="text" placeholder="Find pokemon" />

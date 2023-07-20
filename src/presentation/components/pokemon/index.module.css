@@ -1,47 +1,42 @@
-.boxPokemon {
-    width: 100%;
-    padding: 20px;
-    /* Safari/Chrome, other WebKit */
-    -webkit-box-sizing: border-box;
-    /* Firefox, other Gecko */
-    -moz-box-sizing: border-box;
-    /* Opera/IE 8+ */
-    box-sizing: border-box;
+.circle,
+.item,
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    .circle,
-    .item,
+.item {
+    width: 20%;
+    height: 300px;
+
     .square {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 80%;
+        height: 100%;
+        background-color: #241663;
+        border-radius: 15px;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+        }
+
+        .img {
+            width: 60%;
+        }
+
+        .labelName {
+            font-size: 30px;
+            color: white;
+            background-color: transparent;
+            font-family: "Montserrat", sans-serif;
+        }
     }
 
-    .item {
-        width: 20%;
-        height: 300px;
-
-        .square {
-            width: 80%;
-            height: 100%;
-            background-color: #241663;
-            border-radius: 15px;
-            flex-direction: column;
-            justify-content: space-around;
-
-            .circle {
-                width: 200px;
-                height: 200px;
-                border-radius: 100px;
-            }
-
-            .img {
-                width: 60%;
-            }
-
-            .labelName {
-                font-size: 30px;
-                color: white;
-            }
-        }
+    .square:hover {
+        border: 1px solid #EAE7AF;
     }
 }
