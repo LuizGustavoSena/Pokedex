@@ -1,6 +1,8 @@
 .boxPokemon {
     width: 100%;
     padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
     /* Safari/Chrome, other WebKit */
     -webkit-box-sizing: border-box;
     /* Firefox, other Gecko */
