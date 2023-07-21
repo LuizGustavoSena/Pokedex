@@ -1,5 +1,6 @@
 import { HttpClient, HttpRequest, HttpResponse, HttpStatusCode } from "@/data/protocols/http";
-import { ResponsePokemonAll, ResponsePokemonOnly } from "@/domain/models";
+import { ResponsePokemonAll } from "@/domain/models";
+import { Pokemons } from "@/domain/usecases";
 import faker from "faker";
 
 export const mockRequest = (): HttpRequest => {
@@ -25,7 +26,7 @@ export const mockResponsePokemonsAll = (): HttpResponse<ResponsePokemonAll> => {
     }
 }
 
-export const mockResponsePokemonsOnly = (): HttpResponse<ResponsePokemonOnly> => {
+export const mockResponsePokemonsOnly = (): HttpResponse<Pokemons.Model> => {
     return {
         statusCode: 200,
         body: {
