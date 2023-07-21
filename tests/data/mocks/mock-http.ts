@@ -2,6 +2,7 @@ import { HttpClient, HttpRequest, HttpResponse, HttpStatusCode } from "@/data/pr
 import { ResponsePokemonAll } from "@/domain/models";
 import { Pokemons } from "@/domain/usecases";
 import faker from "faker";
+import { itemPokemon } from "../../domain/mocks";
 
 export const mockRequest = (): HttpRequest => {
     return {
@@ -16,7 +17,7 @@ export const mockResponsePokemonsAll = (): HttpResponse<ResponsePokemonAll> => {
     return {
         statusCode: HttpStatusCode.Ok,
         body: {
-            count: faker.random.number(),
+            count: faker.datatype.number(),
             next: faker.random.words(),
             results: [{
                 name: faker.internet.userName(),
@@ -29,28 +30,7 @@ export const mockResponsePokemonsAll = (): HttpResponse<ResponsePokemonAll> => {
 export const mockResponsePokemonsOnly = (): HttpResponse<Pokemons.Model> => {
     return {
         statusCode: 200,
-        body: {
-            abilities: [{
-                ability: {
-                    name: faker.name.firstName(),
-                    url: faker.internet.url()
-                },
-                is_hidden: faker.random.boolean(),
-                slot: faker.random.number()
-            }],
-            height: faker.random.number(),
-            id: faker.random.number(),
-            is_default: faker.random.boolean(),
-            location_area_encounters: faker.random.words(),
-            name: faker.name.firstName(),
-            sprites: {
-                other: {
-                    dream_world: {
-                        front_default: faker.internet.url()
-                    }
-                }
-            }
-        }
+        body: itemPokemon()
     }
 }
 
