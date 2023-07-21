@@ -29,8 +29,10 @@ const Home: React.FC<Props> = ({ remotePokemon }: Props) => {
             <Header />
             <div className={style.boxPokemon}>
                 {pokemons?.map(pokemon => (
-                    <Pokemon item={pokemon} />
-
+                    <Pokemon
+                        key={pokemon.id}
+                        item={pokemon}
+                    />
                 ))}
             </div>
         </>
