@@ -3,7 +3,7 @@ import { UnexpectedError } from "@/domain/error/unexpected-error";
 import faker from "faker";
 import { describe, expect, it } from "vitest";
 import { RequestPokemons } from "../../domain/mocks";
-import { HttpClientSpy, mockResponsePokemonsAll, mockResponsePokemonsOnly } from "../mocks/mock-hhtp";
+import { HttpClientSpy, mockResponsePokemonsAll, mockResponsePokemonsOnly } from "../mocks/mock-http";
 
 type Props = {
     sut: RemotePokemon;
