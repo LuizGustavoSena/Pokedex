@@ -6,13 +6,36 @@
     align-items: center;
 }
 
+@media (max-width: 1000px) {
+    .item {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1001px) {
+    .item {
+        width: 33%;
+    }
+}
+
+@media (min-width: 1251px) {
+    .item {
+        width: 25%;
+    }
+}
+
+@media (min-width: 1701px) {
+    .item {
+        width: 20%;
+    }
+}
+
 .item {
-    width: 20%;
-    height: 300px;
+    height: 400px;
 
     .square {
-        width: 80%;
-        height: 100%;
+        width: 90%;
+        height: 90%;
         background-color: #241663;
         border-radius: 15px;
         flex-direction: column;
@@ -25,7 +48,7 @@
         }
 
         .img {
-            width: 60%;
+            width: 50%;
         }
 
         .labelName {

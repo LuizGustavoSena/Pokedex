@@ -1,9 +1,7 @@
-import Home from '@/presentation/pages/home';
-import React from 'react';
+import MakeHome from '@/main/factories/pages/home-factory';
 import ReactDOM from 'react-dom/client';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <Home />
-  </React.StrictMode>,
-)
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+  .render(
+    <MakeHome />
+  )
