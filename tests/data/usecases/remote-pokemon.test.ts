@@ -1,9 +1,9 @@
-import { RemotePokemon } from "@/data/usecases/remote-pokemon";
-import { UnexpectedError } from "@/domain/error/unexpected-error";
+import { RemotePokemon } from "@/data/usecases";
+import { UnexpectedError } from "@/domain/error";
 import faker from "faker";
 import { describe, expect, it } from "vitest";
 import { RequestPokemons } from "../../domain/mocks";
-import { HttpClientSpy, mockResponsePokemonsAll, mockResponsePokemonsOnly } from "../mocks/mock-hhtp";
+import { HttpClientSpy, mockResponsePokemonsAll, mockResponsePokemonsOnly } from "../mocks";
 
 type Props = {
     sut: RemotePokemon;

@@ -1,4 +1,4 @@
-import { ResponsePokemonOnly } from "@/domain/models/pokemon-model";
+import { ResponsePokemonOnly } from "@/domain/models";
 import { memo } from "react";
 import style from './index.module.css';
 
