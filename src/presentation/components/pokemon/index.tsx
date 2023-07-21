@@ -1,10 +1,11 @@
-import { ResponsePokemonOnly } from "@/domain/models";
+import { Pokemons } from "@/domain/usecases";
 import { memo } from "react";
 import style from './index.module.css';
 
 type Props = {
-    item: ResponsePokemonOnly;
+    item: Pokemons.Model;
 }
+
 const Pokemon: React.FC<Props> = ({ item }: Props) => {
     return (
         <div className={style.item}>
