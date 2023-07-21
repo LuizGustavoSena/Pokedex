@@ -21,15 +21,11 @@ export class RemotePokemon implements GetPokemons {
         if (response.statusCode !== HttpStatusCode.Ok || !response.body?.results)
             throw new UnexpectedError();
 
-        let pokemons: Pokemons.Model[] = [];
-
-        for (let i = 0; i < response.body.results.length; i++) {
-            const { url } = response.body.results[i];
-
-            let pokemon = await this.getOnly({ url });
-
-            pokemons.push(pokemon);
-        }
+        let pokemons = await Promise.all(
+            response.body.results.map(el =>
+                this.getOnly({ url: el.url })
+            )
+        );
 
         return pokemons;
     }
