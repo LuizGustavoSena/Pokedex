@@ -1,5 +1,5 @@
 import { HttpClient, HttpRequest, HttpResponse, HttpStatusCode } from "@/data/protocols/http";
-import { ResponsePokemonAll, ResponsePokemonOnly } from "@/domain/models/pokemon-model";
+import { ResponsePokemonAll, ResponsePokemonOnly } from "@/domain/models";
 import faker from "faker";
 
 export const mockRequest = (): HttpRequest => {

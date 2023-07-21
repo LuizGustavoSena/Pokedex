@@ -1,4 +1,4 @@
-import { ResponsePokemonOnly } from "@/domain/models/pokemon-model";
+import { ResponsePokemonOnly } from "@/domain/models";
 import Header from "@/presentation/components/header";
 import Pokemon from "@/presentation/components/pokemon";
 import faker from "faker";

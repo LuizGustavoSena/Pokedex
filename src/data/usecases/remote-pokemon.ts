@@ -1,6 +1,6 @@
-import { UnexpectedError } from '@/domain/error/unexpected-error';
-import { ResponsePokemonAll } from '@/domain/models/pokemon-model';
-import { GetPokemons, Pokemons } from '../../domain/usecases';
+import { UnexpectedError } from '@/domain/error';
+import { ResponsePokemonAll } from '@/domain/models';
+import { GetPokemons, Pokemons } from '@/domain/usecases';
 import { HttpClient, HttpStatusCode } from '../protocols/http';
 
 export class RemotePokemon implements GetPokemons {

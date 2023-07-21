@@ -1,4 +1,4 @@
-import { ResponsePokemonOnly } from "../models/pokemon-model";
+import { ResponsePokemonOnly } from "../models";
 
 export interface GetPokemons {
     getAll(params: Pokemons.ParamsAll): Promise<Pokemons.Model[]>;
