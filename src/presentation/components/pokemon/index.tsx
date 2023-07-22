@@ -14,7 +14,7 @@ const Pokemon: React.FC<Props> = ({ item }: Props) => {
                     <img data-testid="imagePokemon" className={style.img} src={item.sprites.other.dream_world.front_default} />
                 </div>
                 <label data-testid="labelNamePokemon" className={style.labelName}>
-                    {item.name}
+                    {item.name[0].toUpperCase() + item.name.slice(1)}
                 </label>
             </div>
         </div>
