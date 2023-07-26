@@ -7,16 +7,18 @@ type Props = {
 
 const Loading: React.FC<Props> = ({ show }: Props) => {
     return (
-        show && (
-            <div className={style.boxLoading}>
-                <div>
-                    <img data-testid="image" className={style.img} src={Pokebol} />
+        <>
+            {show && (
+                <div className={style.boxLoading}>
+                    <div>
+                        <img data-testid="image" className={style.img} src={Pokebol} />
+                    </div>
+                    <label data-testid="message" className={style.label}>
+                        Carregando...
+                    </label>
                 </div>
-                <label data-testid="message" className={style.label}>
-                    Carregando...
-                </label>
-            </div>
-        )
+            )}
+        </>
     )
 }
 
