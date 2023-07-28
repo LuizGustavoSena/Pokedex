@@ -1,5 +1,4 @@
-import { RemotePokemon } from "@/data/usecases";
-import { Pokemons } from '@/domain/usecases';
+import { GetPokemons, Pokemons } from '@/domain/usecases';
 import Header from "@/presentation/components/header";
 import Loading from "@/presentation/components/loading";
 import Pokemon from "@/presentation/components/pokemon";
@@ -7,7 +6,7 @@ import React, { memo, useEffect, useState } from "react";
 import style from './index.module.css';
 
 type Props = {
-    remotePokemon: RemotePokemon
+    remotePokemon: GetPokemons
 }
 
 const Home: React.FC<Props> = ({ remotePokemon }: Props) => {
