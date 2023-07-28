@@ -1,0 +1,51 @@
+.boxItens {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .box {
+        width: 30%;
+        height: 80%;
+        background-color: #6C7A89;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .item {
+            width: 90%;
+            height: 20%;
+            border: 2px solid gray;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .imgDiv {
+                width: 30%;
+                height: 90%;
+                display: flex;
+                justify-content: center;
+                margin-left: 10px;
+
+                .img {
+                    width: 70%;
+                }
+            }
+
+            .labelDiv {
+                width: 60%;
+                height: 90%;
+                margin-left: 20px;
+                display: flex;
+                align-items: center;
+
+                .label {
+                    font-size: 40px;
+                    color: white;
+                }
+            }
+        }
+    }
+}
