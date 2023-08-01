@@ -1,5 +1,5 @@
 import Home from '@/presentation/pages/home';
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { describe, expect, it } from 'vitest';
 import { RemotePokemonSpy } from "../../../domain/mocks";
 
@@ -21,16 +21,14 @@ describe('presentation/pages/home', () => {
         expect(component).toBeTruthy();
     });
 
-    it('Should correct pokemons component', () => {
+    it('Should correct pokemons component', async () => {
         let { component, remotePokemonSpy } = makeSut();
         let { getAllByTestId } = component;
 
-        setTimeout(() => {
-            let pokemonsName = getAllByTestId('labelNamePokemon');
-            console.log('pokemonsName', pokemonsName)
+        let pokemonsName = await waitFor(() => getAllByTestId('labelNamePokemon'));
 
-            expect(component).toBeTruthy();
-        }, 1000);
-
+        pokemonsName.forEach((el, index) => {
+            expect(el.textContent).toBe(remotePokemonSpy.pokemons[index].name)
+        })
     });
 })

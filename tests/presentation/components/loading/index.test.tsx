@@ -27,4 +27,12 @@ describe('presentation/components/loading', () => {
 
         expect(text).toBeNull();
     });
+
+    it('Should render component', () => {
+        let { getByText } = makeSut(true);
+
+        let text = getByText('Carregando...');
+
+        expect(text).not.toBeNull();
+    });
 })
