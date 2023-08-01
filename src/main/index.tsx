@@ -1,8 +1,7 @@
-import Itens from '@/presentation/pages/itens';
+import Flows from '@/presentation/pages/flows';
 import ReactDOM from 'react-dom/client';
-import { makeRemotePokemon } from './factories/usecases';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
   .render(
-    <Itens remotePokemon={makeRemotePokemon()} />
+    <Flows />
   )
