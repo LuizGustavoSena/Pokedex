@@ -12,6 +12,7 @@ type Props = {
 const Home: React.FC<Props> = ({ remotePokemon }: Props) => {
     const [pokemons, setPokemons] = useState<Pokemons.Model[]>();
     const [loading, setLoading] = useState<boolean>(false);
+    const [searchPokemons, setSearchPokemons] = useState<Pokemons.Model[]>();
 
     useEffect(() => {
         async function getPokemons() {
@@ -29,17 +30,32 @@ const Home: React.FC<Props> = ({ remotePokemon }: Props) => {
         getPokemons();
     }, []);
 
+    const onChangesSearchInput = (text: string) => {
+        let findPokemon = pokemons?.filter(el => el.name.includes(text));
+
+        setSearchPokemons(findPokemon);
+    }
+
     return (
         <>
             <Loading show={loading} />
+            <Header onChange={onChangesSearchInput} />
             <Header />
             <div className={style.boxPokemon}>
-                {pokemons?.map(pokemon => (
-                    <Pokemon
-                        key={pokemon.id}
-                        item={pokemon}
-                    />
-                ))}
+                {searchPokemons ? (
+                    searchPokemons.map(pokemon => (
+                        <Pokemon
+                            key={pokemon.id}
+                            item={pokemon}
+                        />
+                    )))
+                    : (pokemons?.map(pokemon => (
+                        <Pokemon
+                            key={pokemon.id}
+                            item={pokemon}
+                        />
+                    )))
+                }
             </div>
         </>
     )
