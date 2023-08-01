@@ -40,7 +40,6 @@ const Home: React.FC<Props> = ({ remotePokemon }: Props) => {
         <>
             <Loading show={loading} />
             <Header onChange={onChangesSearchInput} />
-            <Header />
             <div className={style.boxPokemon}>
                 {searchPokemons ? (
                     searchPokemons.map(pokemon => (
