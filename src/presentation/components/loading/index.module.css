@@ -1,0 +1,31 @@
+.boxLoading {
+    margin-top: -20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgba(22, 15, 48, 0.8);
+
+    .img {
+        width: 100px;
+        animation: rotation 3s infinite linear;
+    }
+
+    .label {
+        margin-top: 35px;
+        color: white;
+    }
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
