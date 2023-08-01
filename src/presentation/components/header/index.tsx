@@ -2,8 +2,11 @@ import { memo } from "react";
 import Pokemon from '../../assets/images/pokemon.svg';
 import style from './index.module.css';
 
-const Header: React.FC = () => {
+type Props = {
+    onChange(text: string): void;
+}
 
+const Header: React.FC<Props> = ({ onChange }: Props) => {
     return (
         <div className={style.boxHeader}>
             <div className={style.box}>
@@ -11,7 +14,13 @@ const Header: React.FC = () => {
                     <img className={style.image} src={Pokemon} alt="Pokeboll" />
                 </div>
                 <div className={style.search}>
-                    <input className={style.input} type="text" placeholder="Find pokemon" />
+                    <input
+                        className={style.input}
+                        data-testid="searchInput"
+                        type="text"
+                        onChange={e => onChange(e.target.value)}
+                        placeholder="Find pokemon"
+                    />
                 </div>
             </div>
         </div>
