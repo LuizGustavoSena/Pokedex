@@ -18,5 +18,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
+  },
+  server: {
+    host: true,
+    port: 3000
   }
 } as VitestConfigExport)
