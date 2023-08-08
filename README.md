@@ -1,5 +1,5 @@
 # Pokedex
-Project print image and name some pokemons focused in TDD, Clean Architecture, Clean code and unit test. [Click here](https://lbspokedex.vercel.app/) to view web site.
+This project displays images and names of some pokemons focused on TDD, Clean Architecture, Clean code and unit test. [Click here](https://lbspokedex.vercel.app/) to view the web site.
 
 ![Website](https://github.com/LuizGustavoSena/Pokedex/blob/main/public/gif/pokemons.gif)
 
