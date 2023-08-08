@@ -8,7 +8,7 @@ type Props = {
 
 const Header: React.FC<Props> = ({ onChange }: Props) => {
     return (
-        <div className={style.boxHeader}>
+        <div className={style.boxHeader} data-testid="headerComponent">
             <div className={style.box}>
                 <div className={style.logo}>
                     <img className={style.image} src={Pokemon} alt="Pokeboll" />

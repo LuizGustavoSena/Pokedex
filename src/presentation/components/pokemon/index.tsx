@@ -8,7 +8,7 @@ type Props = {
 
 const Pokemon: React.FC<Props> = ({ item }: Props) => {
     return (
-        <div className={style.item}>
+        <div className={style.item} data-testid="pokemonItemComponent">
             <div className={style.square}>
                 <div className={style.circle}>
                     <img data-testid="imagePokemon" className={style.img} src={item.sprites.other.dream_world.front_default} />

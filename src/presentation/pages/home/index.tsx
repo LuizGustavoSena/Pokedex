@@ -31,7 +31,7 @@ const Home: React.FC<Props> = ({ remotePokemon }: Props) => {
     }, []);
 
     const onChangesSearchInput = (text: string) => {
-        let findPokemon = pokemons?.filter(el => el.name.includes(text));
+        let findPokemon = pokemons?.filter(el => el.name.includes(text.toLowerCase()));
 
         setSearchPokemons(findPokemon);
     }
