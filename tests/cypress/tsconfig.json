@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
         "types": [
-            "cypress"
+            "cypress",
+            "@testing-library/cypress"
         ],
         "esModuleInterop": true
     },
