@@ -16,8 +16,8 @@ export type HttpRequest = {
 
 type HttpMethod = 'post' | 'put' | 'get' | 'delete' | 'patch';
 
-export interface HttpClient<T = any> {
-    request(params: HttpRequest): Promise<HttpResponse<T>>;
+export interface HttpClient {
+    request<T = any>(params: HttpRequest): Promise<HttpResponse<T>>;
 }
 
 export type HttpResponse<T> = {
