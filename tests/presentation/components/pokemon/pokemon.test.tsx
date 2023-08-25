@@ -25,7 +25,7 @@ describe('presentation/components/header', () => {
         let srcImage = getByTestId('imagePokemon').getAttribute('src');
         let pokemonName = getByTestId('labelNamePokemon').textContent;
 
-        expect(srcImage).toBe(pokemonItem.sprites.other.dream_world.front_default);
+        expect(srcImage).toBe(pokemonItem.sprites.front_default);
         expect(pokemonName).toBe(pokemonItem.name);
     });
 })
