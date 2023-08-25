@@ -6,24 +6,38 @@ import { HttpClient, HttpStatusCode } from '../protocols/http';
 export class RemotePokemon implements GetPokemons {
     constructor(
         private readonly url: string,
-        private readonly httpClientAll: HttpClient<RemotePokemon.ModelAll>,
-        private readonly httpClientOnly: HttpClient<RemotePokemon.ModelOnly>
+        private readonly httpClient: HttpClient,
     ) { }
 
     async getAll(params: Pokemons.ParamsAll): Promise<Pokemons.Model[]> {
         const { limit } = params;
 
-        let response = await this.httpClientAll.request({
-            url: `${this.url}?limit=${limit}`,
-            method: 'get'
+        let graphqlQuery = {
+            query: `query pokemons($limit: Int, $offset: Int) {
+                pokemons(limit: $limit, offset: $offset) {
+                  results {
+                    name
+                  }
+                }
+              }`,
+            variables: {
+                limit: limit,
+                offset: 1,
+            }
+        };
+
+        let response = await this.httpClient.request<RemotePokemon.ModelAll>({
+            url: `${this.url}`,
+            method: 'post',
+            body: graphqlQuery
         });
 
-        if (response.statusCode !== HttpStatusCode.Ok || !response.body?.results)
+        if (response.statusCode !== HttpStatusCode.Ok || !response.body?.pokemons.results)
             throw new UnexpectedError();
 
         let pokemons = await Promise.all(
-            response.body.results.map(el =>
-                this.getOnly({ url: el.url })
+            response.body.pokemons.results.map(el =>
+                this.getOnly({ name: el.name })
             )
         );
 
@@ -31,21 +45,39 @@ export class RemotePokemon implements GetPokemons {
     }
 
     async getOnly(params: Pokemons.ParamsOnly): Promise<Pokemons.Model> {
-        const { url } = params;
+        const { name } = params;
 
-        let response = await this.httpClientOnly.request({
-            url,
-            method: 'get'
+        let graphqlQuery = {
+            query: `query pokemon($name: String!) {
+                pokemon(name: $name) {
+                  id
+                  name
+                  sprites {
+                      front_default
+                  }
+                }
+              }`,
+            variables: {
+                name,
+            }
+        };
+
+        let response = await this.httpClient.request<RemotePokemon.ModelOnly>({
+            url: `${this.url}`,
+            method: 'post',
+            body: graphqlQuery
         });
 
         if (response.statusCode !== HttpStatusCode.Ok)
             throw new UnexpectedError();
 
-        return response?.body as Pokemons.Model;
+        return response?.body?.pokemon as Pokemons.Model;
     }
 }
 
 export namespace RemotePokemon {
     export type ModelAll = ResponsePokemonAll;
-    export type ModelOnly = Pokemons.Model;
+    export type ModelOnly = {
+        pokemon: Pokemons.Model;
+    }
 }
