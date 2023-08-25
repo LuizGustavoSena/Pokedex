@@ -1,8 +1,7 @@
 import { HttpClient, HttpRequest, HttpResponse, HttpStatusCode } from "@/data/protocols/http";
-import { ResponsePokemonAll } from "@/domain/models";
-import { Pokemons } from "@/domain/usecases";
 import faker from "faker";
 import { itemPokemon } from "../../domain/mocks";
+import { RemotePokemon } from "../usecases";
 
 export const mockRequest = (): HttpRequest => {
     return {
@@ -13,27 +12,19 @@ export const mockRequest = (): HttpRequest => {
     }
 }
 
-export const mockResponsePokemonsAll = (): HttpResponse<ResponsePokemonAll> => {
+export const mockResponsePokemonsAll = (): HttpResponse<RemotePokemon.ModelAll & RemotePokemon.ModelOnly> => {
     return {
         statusCode: HttpStatusCode.Ok,
         body: {
-            count: faker.datatype.number(),
-            next: faker.random.words(),
-            results: [{
-                name: faker.internet.userName(),
-                url: faker.internet.url()
-            }]
+            pokemons: {
+                results: [{
+                    name: faker.internet.userName(),
+                }]
+            },
+            pokemon: itemPokemon()
         }
     }
 }
-
-export const mockResponsePokemonsOnly = (): HttpResponse<Pokemons.Model> => {
-    return {
-        statusCode: 200,
-        body: itemPokemon()
-    }
-}
-
 export class HttpClientSpy<T = any> implements HttpClient {
     url?: string;
     method?: string;
