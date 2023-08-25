@@ -1,10 +1,10 @@
 import { RemotePokemon } from "@/data/usecases";
 import { GetPokemons } from "@/domain/usecases";
-import { makeAxiosHttpClient, makeUrl } from "../http";
+import { makeGraphqlClientDecorator } from "../decorators/graphql-client-decorator-factory";
+import { makeUrl } from "../http";
 
 export const makeRemotePokemon = (): GetPokemons =>
     new RemotePokemon(
-        makeUrl('/pokemon'),
-        makeAxiosHttpClient(),
-        makeAxiosHttpClient()
+        makeUrl('/'),
+        makeGraphqlClientDecorator()
     );
