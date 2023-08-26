@@ -17,9 +17,10 @@ export class GraphqlClientDecorator implements HttpClient {
             url,
             method,
             body: JSON.stringify(body),
-            headers: Object.assign(headers || {}, {
+            headers: {
+                ...headers,
                 'Content-Type': 'application/json'
-            })
+            }
         });
 
         return {
