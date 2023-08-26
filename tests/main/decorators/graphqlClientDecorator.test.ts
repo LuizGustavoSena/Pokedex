@@ -37,5 +37,20 @@ describe('main/decorators/graphql-client-decorator', () => {
         expect(response.body).toBe(httpClientSpy.response.body.data);
     });
 
+    it('Should correct headers with send object', async () => {
+        const { httpClientSpy, sut } = makeSut();
+
+        let headers = { field: faker.random.words() };
+        let request = mockRequest({ headers });
+
+        await sut.request(request);
+
+        expect(httpClientSpy.headers).toEqual({
+            ...headers,
+            'Content-Type': 'application/json'
+        });
+    });
+
+
 
 })
