@@ -51,6 +51,16 @@ describe('main/decorators/graphql-client-decorator', () => {
         });
     });
 
+    it('Should correct headers with send empty object', async () => {
+        const { httpClientSpy, sut } = makeSut();
 
+        let headers = {};
+        let request = mockRequest({ headers });
 
-})
+        await sut.request(request);
+
+        expect(httpClientSpy.headers).toEqual({
+            'Content-Type': 'application/json'
+        });
+    });
+});
