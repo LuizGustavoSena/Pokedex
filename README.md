@@ -13,8 +13,20 @@ This project displays images and names of some pokemons focused on TDD, Clean Ar
   <img align="center" height="60" width="60" src="https://www.finsmes.com/wp-content/uploads/2020/12/cypress.jpg" />
   <img align="center" height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" /> 
   <img align="center" height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" /> 
+  <img align="center" height="60" width="80" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" />
+
 </div>
 
+### Build Project:
+Clone repository
+```js
+    https://github.com/LuizGustavoSena/Pokedex.git
+```
+
+Run this command
+```js
+    yarn start
+```
 ### Docker Image:
 
 ![DockerImage](https://github.com/LuizGustavoSena/Pokedex/blob/main/public/img/dockerImage.png)

@@ -10,7 +10,7 @@ export namespace Pokemons {
         limit: number
     };
     export type ParamsOnly = {
-        url: string
+        name: string
     };
     export type Model = ResponsePokemonOnly;
 }
