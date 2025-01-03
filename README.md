@@ -4,7 +4,7 @@
 <img height="400" src="public/img/pokemon.webp" />
 </div>
 </br>
-This project displays images and names of some pokemons focused on TDD, Clean Architecture, Clean code and unit test. [Click here](https://lbspokedex.vercel.app/) to view the web site.
+This project displays images and names of some pokemons focused on TDD, Clean Architecture, Clean code and unit test. Visit the web site https://lbspokedex.vercel.app/.
 
 ## Table of Contents
 
